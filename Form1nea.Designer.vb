@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class Form1nea
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -37,7 +37,6 @@ Partial Class Form1
         Me.TR2 = New System.Windows.Forms.TextBox
         Me.Label7 = New System.Windows.Forms.Label
         Me.TR3 = New System.Windows.Forms.TextBox
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox
         Me.SuspendLayout()
         '
         'Button1
@@ -61,44 +60,40 @@ Partial Class Form1
         'D1
         '
         Me.D1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.D1.Location = New System.Drawing.Point(688, 72)
+        Me.D1.Location = New System.Drawing.Point(161, 231)
         Me.D1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.D1.Name = "D1"
         Me.D1.Size = New System.Drawing.Size(140, 22)
         Me.D1.TabIndex = 3
-        Me.D1.Visible = False
         '
         'D2
         '
         Me.D2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.D2.Location = New System.Drawing.Point(688, 102)
+        Me.D2.Location = New System.Drawing.Point(564, 231)
         Me.D2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.D2.Name = "D2"
         Me.D2.Size = New System.Drawing.Size(140, 22)
         Me.D2.TabIndex = 4
-        Me.D2.Visible = False
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(632, 72)
+        Me.Label3.Location = New System.Drawing.Point(157, 201)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(38, 17)
         Me.Label3.TabIndex = 7
         Me.Label3.Text = "ΑΠΟ"
-        Me.Label3.Visible = False
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(632, 102)
+        Me.Label4.Location = New System.Drawing.Point(560, 201)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(37, 17)
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "ΕΩΣ"
-        Me.Label4.Visible = False
         '
         'EPO
         '
@@ -186,20 +181,11 @@ Partial Class Form1
         Me.TR3.Size = New System.Drawing.Size(132, 22)
         Me.TR3.TabIndex = 7
         '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(168, 220)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(324, 24)
-        Me.ComboBox1.TabIndex = 18
-        '
-        'Form1
+        'Form1nea
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(859, 681)
-        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.TR3)
         Me.Controls.Add(Me.Label6)
@@ -216,7 +202,7 @@ Partial Class Form1
         Me.Controls.Add(Me.TR1)
         Me.Controls.Add(Me.Button1)
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.Name = "Form1"
+        Me.Name = "Form1nea"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -237,6 +223,5 @@ Partial Class Form1
     Friend WithEvents TR2 As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents TR3 As System.Windows.Forms.TextBox
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
 
 End Class

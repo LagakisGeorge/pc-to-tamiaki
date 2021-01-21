@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 
 
-Public Class Form1
+Public Class Form1nea
 
 
     Private Sub DateTimePicker2_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles D2.ValueChanged
@@ -61,12 +61,12 @@ Public Class Form1
 
 
 
-       
+
         Dim C0 As String = Replace(Format(N - 0.03, "######0.00"), ".", ",")
         Dim n0 As Integer
         n0 = Len(C0)
-        'C= """plu""" + " 00-0038      ΥΠΗΡΕΣΙΕΣ ΓΥΜΝΑΣΤΗΡΙΟΥ        1,00" + Space(11 - n0) + C0 + "       24 1"
-        '============================= ===================================  =========================
+
+
         C = """plu""" + " 00-0038      ΥΠΗΡΕΣΙΕΣ ΓΥΜΝΑΣΤΗΡΙΟΥ        1,00" + Space(11 - n0) + C0 + "       24 1"
 
         objStreamWriter.WriteLine(C)
@@ -118,10 +118,6 @@ Public Class Form1
 
 
 
-
-    End Sub
-
-    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
     End Sub
 End Class
