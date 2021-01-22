@@ -2,6 +2,7 @@
 
 
 Public Class Form1
+    Public WhoFocus As Integer
 
 
     Private Sub DateTimePicker2_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles D2.ValueChanged
@@ -43,7 +44,10 @@ Public Class Form1
 
         N = Val(TR1.Text) + Val(TR2.Text) + Val(TR3.Text)
 
-
+        If N > 100 Then
+            MsgBox("ΥΠΕΡΒΑΣΗ 100Ε")
+            Exit Sub
+        End If
         If N < 0.03 Then
             MsgBox("δεν βαλατε ποσό")
             Exit Sub
@@ -62,44 +66,53 @@ Public Class Form1
 
 
        
-        Dim C0 As String = Replace(Format(N - 0.03, "######0.00"), ".", ",")
+        Dim C0 As String = Replace(Format(N - 0.01, "######0.00"), ".", ",")
         Dim n0 As Integer
         n0 = Len(C0)
         'C= """plu""" + " 00-0038      ΥΠΗΡΕΣΙΕΣ ΓΥΜΝΑΣΤΗΡΙΟΥ        1,00" + Space(11 - n0) + C0 + "       24 1"
         '============================= ===================================  =========================
-        C = """plu""" + " 00-0038      ΥΠΗΡΕΣΙΕΣ ΓΥΜΝΑΣΤΗΡΙΟΥ        1,00" + Space(11 - n0) + C0 + "       24 1"
+
+
+
+        
+
+
+
+        '                 C = """plu""" + " 00-0038      ΥΠΗΡΕΣΙΕΣ ΓΥΜΝΑΣΤΗΡΙΟΥ        1,00" + Space(11 - n0) + C0 + "       24 1"
+        C = """plu""" + " 00-0038      " + Mid(DIE.Text + Space(24), 1, 24) + "      1,00" + Space(11 - n0) + C0 + "       24 1"
 
         objStreamWriter.WriteLine(C)
 
 
 
 
-
-
-
-
-
-
-        C = """plu""" + " 00-0038      " + Mid(EPO.Text + Space(24), 1, 24) + "      1,000   " + "   0,01" + "       24 1"
+        C = """plu""" + " 00-0038      " + Mid("VOUCHER:" + EPO.Text + Space(24), 1, 24) + "      1,000   " + "   0,01" + "       24 1"
 
         objStreamWriter.WriteLine(C)
 
 
-        C = """plu""" + " 00-0038      " + Mid(DIE.Text + Space(24), 1, 24) + "      1,000   " + "   0,01" + "       24 1"
-
-        objStreamWriter.WriteLine(C)
-
-        C = """plu""" + " 00-0038      " + Format(D1.Value, "dd/MM/yy") + " ΕΩΣ " + Format(D2.Value, "dd/MM/yy") + "         1,000   " + "   0,01" + "       24 1"
-
-        objStreamWriter.WriteLine(C)
 
 
-        'Write a second line of text.
+        '  C = """plu""" + " 00-0038      ΥΠΗΡΕΣΙΕΣ ΓΥΜΝΑΣΤΗΡΙΟΥ        1,00" + Space(11 - n0) + C0 + "       24 1"
+
+        '  objStreamWriter.WriteLine(C)
+
+
+        ' C = """plu""" + " 00-0038      " + Format(D1.Value, "dd/MM/yy") + " ΕΩΣ " + Format(D2.Value, "dd/MM/yy") + "         1,000   " + "   0,01" + "       24 1"
+
+        '  objStreamWriter.WriteLine(C)
+
+
+        'Write a second line of text.  337308889
         objStreamWriter.WriteLine("""to1""" + "  1      " + Replace(Format(Val(TR1.Text), "##0.00"), ".", ","))
         objStreamWriter.WriteLine("""to2""" + "  2      " + Replace(Format(Val(TR2.Text), "##0.00"), ".", ","))
         objStreamWriter.WriteLine("""to3""" + "  3      " + Replace(Format(Val(TR3.Text), "##0.00"), ".", ","))
 
-
+        If Val(TR1.Text) > 0 Then
+            WhoFocus = 1
+        Else
+            WhoFocus = 2
+        End If
 
         '"to2"  2      0.01
         '"to3"  3      0.01)
@@ -116,12 +129,129 @@ Public Class Form1
         DIE.Text = ""
 
 
+        EPO.Focus()
 
 
 
     End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        WhoFocus = 2
+    End Sub
 
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        DIE.Text = "ΑΝΤΑΛΛΑΚΤΙΚΑ ΥΠΟΛΟΓΙΣΤΩΝ"
+        If WhoFocus = 2 Then
+            TR2.Focus()
+        Else
+            TR1.Focus()
+        End If
+
+
+
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        DIE.Text = "ΑΞΕΣΣΟΥΑΡ ΚΙΝΗΤΩΝ"
+        If WhoFocus = 2 Then
+            TR2.Focus()
+        Else
+            TR1.Focus()
+        End If
+
+    End Sub
+
+    Private Sub EPO_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles EPO.GotFocus
+        EPO.BackColor = Color.Yellow
+    End Sub
+
+    Private Sub EPO_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles EPO.KeyUp
+        If e.KeyCode = 13 Then
+            Button2.Focus()
+        End If
+    End Sub
+
+    Private Sub EPO_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles EPO.LostFocus
+        EPO.BackColor = Color.White
+    End Sub
+
+
+
+    Private Sub TR1_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles TR1.GotFocus
+        TR1.BackColor = Color.Yellow
+    End Sub
+
+    Private Sub TR1_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TR1.KeyUp
+        If e.KeyCode = 13 Then
+            Button1.Focus()
+        End If
+    End Sub
+
+    Private Sub TR1_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles TR1.LostFocus
+        TR1.BackColor = Color.White
+    End Sub
+
+    Private Sub TR2_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles TR2.GotFocus
+        TR2.BackColor = Color.Yellow
+    End Sub
+
+    Private Sub TR2_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TR2.KeyUp
+        If e.KeyCode = 13 Then
+            Button1.Focus()
+        End If
+    End Sub
+
+    
+
+    Private Sub TR2_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles TR2.LostFocus
+        TR2.BackColor = Color.White
+    End Sub
+
+    
+    Private Sub EPO_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EPO.TextChanged
+
+    End Sub
+
+    Private Sub TR2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TR2.TextChanged
+
+    End Sub
+
+    Private Sub TR1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TR1.TextChanged
+
+    End Sub
+
+    Private Sub Button2_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button2.Enter
+        'DIE.Text = "ΑΝΤΑΛΛΑΚΤΙΚΑ ΥΠΟΛΟΓΙΣΤΩΝ"
+        'If WhoFocus = 2 Then
+        '    TR2.Focus()
+        'Else
+        '    TR1.Focus()
+        'End If
+    End Sub
+
+    Private Sub Button3_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button3.Enter
+        'DIE.Text = "ΑΝΤΑΛΛΑΚΤΙΚΑ ΥΠΟΛΟΓΙΣΤΩΝ"
+        'If WhoFocus = 2 Then
+        '    TR2.Focus()
+        'Else
+        '    TR1.Focus()
+        'End If
+    End Sub
+
+    Private Sub Button1_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.GotFocus
+        If Val(TR1.Text) + Val(TR2.Text) = 0 Then
+            If WhoFocus = 2 Then
+                TR2.Focus()
+            Else
+                TR1.Focus()
+            End If
+        End If
+    End Sub
+
+    Private Sub Button2_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button2.GotFocus
+        If Len(EPO.Text) = 0 Then
+            EPO.Focus()
+
+        End If
     End Sub
 End Class
