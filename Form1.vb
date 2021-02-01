@@ -41,9 +41,14 @@ Public Class Form1
         'FileClose(1)
         Dim C As String
         Dim N As Single
+        Dim n1 As Single
+        Dim n2 As Single
+        Dim n3 As Single
+        n1 = Val(Replace(TR1.Text, ",", "."))
+        n2 = Val(Replace(TR2.Text, ",", "."))
+        n3 = Val(Replace(TR3.Text, ",", "."))
 
-        N = Val(TR1.Text) + Val(TR2.Text) + Val(TR3.Text)
-
+        N = n1 + n2 + n3
         If N > 100 Then
             MsgBox("ΥΠΕΡΒΑΣΗ 100Ε")
             Exit Sub
@@ -79,14 +84,14 @@ Public Class Form1
 
 
         '                 C = """plu""" + " 00-0038      ΥΠΗΡΕΣΙΕΣ ΓΥΜΝΑΣΤΗΡΙΟΥ        1,00" + Space(11 - n0) + C0 + "       24 1"
-        C = """plu""" + " 00-0038      " + Mid(DIE.Text + Space(24), 1, 24) + "      1,00" + Space(11 - n0) + C0 + "       24 1"
+        C = """plu""" + " 00-0038      " + Mid(DIE.Text + Space(24), 1, 24) + "      1,00" + Space(11 - n0) + C0 + "    24,00 1"
 
         objStreamWriter.WriteLine(C)
 
 
 
 
-        C = """plu""" + " 00-0038      " + Mid("VOUCHER:" + EPO.Text + Space(24), 1, 24) + "      1,000   " + "   0,01" + "       24 1"
+        C = """plu""" + " 00-0038      " + Mid("" + Trim(EPO.Text) + "  VOUCHER" + Space(24), 1, 24) + "      1,00    " + "   0,01" + "    24,00 1"
 
         objStreamWriter.WriteLine(C)
 
@@ -104,9 +109,9 @@ Public Class Form1
 
 
         'Write a second line of text.  337308889
-        objStreamWriter.WriteLine("""to1""" + "  1      " + Replace(Format(Val(TR1.Text), "##0.00"), ".", ","))
-        objStreamWriter.WriteLine("""to2""" + "  2      " + Replace(Format(Val(TR2.Text), "##0.00"), ".", ","))
-        objStreamWriter.WriteLine("""to3""" + "  3      " + Replace(Format(Val(TR3.Text), "##0.00"), ".", ","))
+        objStreamWriter.WriteLine("""to1""" + "  1      " + Replace(Format(n1, "##0.00"), ".", ","))
+        objStreamWriter.WriteLine("""to2""" + "  2      " + Replace(Format(n2, "##0.00"), ".", ","))
+        objStreamWriter.WriteLine("""to3""" + "  3      " + Replace(Format(n3, "##0.00"), ".", ","))
 
         If Val(TR1.Text) > 0 Then
             WhoFocus = 1
@@ -140,7 +145,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        DIE.Text = "ΑΝΤΑΛΛΑΚΤΙΚΑ ΥΠΟΛΟΓΙΣΤΩΝ"
+        DIE.Text = "ΠΕΡΙΦΕΡΙΑΚΑ ΥΠΟΛΟΓΙΣΤΩΝ"
         If WhoFocus = 2 Then
             TR2.Focus()
         Else
